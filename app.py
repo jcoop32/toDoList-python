@@ -59,39 +59,33 @@ def addTask():
     print('Task added!')
 
 def editTask():
-    if (len(listItems) > 0 ):
-        editChoice = input('# of task to edit: ')
-        editChoice = int(editChoice)
-        # check to see if task is in index
-        if (len(listItems) >= editChoice):
-            newTask = input(str(editChoice) + ': ')
-            listItems[editChoice - 1]['description'] = newTask
-        else:
-            print('task not found')
+    editChoice = input('# of task to edit: ')
+    editChoice = int(editChoice)
+    # check to see if task is in index
+    if (len(listItems) >= editChoice):
+        newTask = input(str(editChoice) + ': ')
+        listItems[editChoice - 1]['description'] = newTask
     else:
-        print('No items in list')
+        print('task not found')
 
 def deleteTask():
-    if (len(listItems) > 0):
-        deleteChoice = input('# of item to delete: ')
-        deleteChoice = int(deleteChoice)
-        if (len(listItems) >= deleteChoice):
-            confirm = input('Are you sure you want to delete? (y/n): ')
-            if (confirm.casefold() == 'y'):
-                listItems.pop(deleteChoice - 1)
-        else:
-            print('task not found')
+    deleteChoice = input('# of item to delete: ')
+    deleteChoice = int(deleteChoice)
+    if (len(listItems) >= deleteChoice):
+        confirm = input('Are you sure you want to delete? (y/n): ')
+        if (confirm.casefold() == 'y'):
+            listItems.pop(deleteChoice - 1)
     else:
-        print('No items in list')
+        print('task not found')
 
 def completeTask():
-    if (len(listItems) > 0):
-        task = input('# of Task finished: ')
-        task = int(task)
+    task = input('# of Task finished: ')
+    task = int(task)
+    if (len(listItems) >= task):
         listItems[task - 1]['isDone'] = True
         print('Task completed')
     else:
-        print('No items in list')
+        print('task not found')
 
 def listTasks():
     if (len(listItems) > 0):
