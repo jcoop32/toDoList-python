@@ -37,8 +37,8 @@ def menu():
         deleteTask()
     # elif (userChoice == 'c'):
     #     completeTask()
-    # elif (userChoice == 'l'):
-    #     listTask()
+    elif (userChoice == 'l'):
+        listTasks()
     # elif (userChoice == 'L'):
     #     listAllTasks()
     elif (userChoice == 'x'):
@@ -77,11 +77,15 @@ def deleteTask():
             listItems.pop(deleteChoice - 1)
     else:
         print('No items in list')
+
 def listTasks():
-    for i in range(0, len(listItems)):
-        print('---------------')
-        print(str(i + 1) + ': ' + str(listItems[i]['description']))
-        print('---------------')
+    if (len(listItems) > 0):
+        for i in range(0, len(listItems)):
+            print('---------------')
+            print(str(i + 1) + ': ' + str(listItems[i]['description']))
+            print('---------------')
+    else:
+        print('No items in list')
 
 while (exitProgram == False):
     menu()
