@@ -51,10 +51,12 @@ def menu():
 
 def addTask():
     userInput = input('Enter task: ')
+    # create obj
     task = {
         "description": userInput,
         "isDone": False,
     }
+    # add obj to dictionary/array
     listItems.append(task)
     print('Task added!')
 
@@ -63,7 +65,9 @@ def editTask():
     editChoice = int(editChoice)
     # check to see if task is in index
     if (len(listItems) >= editChoice):
+        # get string of new task
         newTask = input(str(editChoice) + ': ')
+        # set the choice to the newtask
         listItems[editChoice - 1]['description'] = newTask
     else:
         print('task not found')
@@ -74,6 +78,7 @@ def deleteTask():
     if (len(listItems) >= deleteChoice):
         confirm = input('Are you sure you want to delete? (y/n): ')
         if (confirm.casefold() == 'y'):
+            # delete specified task
             listItems.pop(deleteChoice - 1)
     else:
         print('task not found')
@@ -82,6 +87,7 @@ def completeTask():
     task = input('# of Task finished: ')
     task = int(task)
     if (len(listItems) >= task):
+        # set the specified task to completed/true
         listItems[task - 1]['isDone'] = True
         print('Task completed')
     else:
@@ -90,6 +96,7 @@ def completeTask():
 def listTasks():
     if (len(listItems) > 0):
         for i in range(0, len(listItems)):
+            # print only unfinished tasks
             if (listItems[i]['isDone'] == False):
                 print('---------------')
                 print(str(i + 1) + ': ' + str(listItems[i]['description']))
@@ -101,6 +108,7 @@ def listAllTasks():
     if (len(listItems) > 0):
         for i in range(0, len(listItems)):
             print('---------------')
+            # print all tasks and check is completed or not
             print(str(i + 1) + ': ' + str(listItems[i]['description']) + ' - ' + ('Completed' if (listItems[i]['isDone'] == True) else 'Not completed'))
             print('---------------')
     else:
