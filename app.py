@@ -35,8 +35,8 @@ def menu():
         editTask()
     elif (userChoice == 'd'):
         deleteTask()
-    # elif (userChoice == 'c'):
-    #     completeTask()
+    elif (userChoice == 'c'):
+        completeTask()
     elif (userChoice == 'l'):
         listTasks()
     elif (userChoice == 'L'):
@@ -54,7 +54,6 @@ def addTask():
     task = {
         "description": userInput,
         "isDone": False,
-        "isDeleted": False
     }
     listItems.append(task)
     print('Task added!')
@@ -75,6 +74,15 @@ def deleteTask():
         confirm = input('Are you sure you want to delete? (y/n): ')
         if (confirm.casefold() == 'y'):
             listItems.pop(deleteChoice - 1)
+    else:
+        print('No items in list')
+
+def completeTask():
+    if (len(listItems) > 0):
+        task = input('# of Task finished: ')
+        task = int(task)
+        listItems[task - 1]['isDone'] = True
+        print('Task completed')
     else:
         print('No items in list')
 
