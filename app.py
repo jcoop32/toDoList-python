@@ -62,8 +62,12 @@ def editTask():
     if (len(listItems) > 0 ):
         editChoice = input('# of task to edit: ')
         editChoice = int(editChoice)
-        newTask = input(str(editChoice) + ': ')
-        listItems[editChoice - 1]['description'] = newTask
+        # check to see if task is in index
+        if (len(listItems) >= editChoice):
+            newTask = input(str(editChoice) + ': ')
+            listItems[editChoice - 1]['description'] = newTask
+        else:
+            print('task not found')
     else:
         print('No items in list')
 
@@ -71,9 +75,12 @@ def deleteTask():
     if (len(listItems) > 0):
         deleteChoice = input('# of item to delete: ')
         deleteChoice = int(deleteChoice)
-        confirm = input('Are you sure you want to delete? (y/n): ')
-        if (confirm.casefold() == 'y'):
-            listItems.pop(deleteChoice - 1)
+        if (len(listItems) >= deleteChoice):
+            confirm = input('Are you sure you want to delete? (y/n): ')
+            if (confirm.casefold() == 'y'):
+                listItems.pop(deleteChoice - 1)
+        else:
+            print('task not found')
     else:
         print('No items in list')
 
@@ -89,8 +96,8 @@ def completeTask():
 def listTasks():
     if (len(listItems) > 0):
         for i in range(0, len(listItems)):
-            print('---------------')
             if (listItems[i]['isDone'] == False):
+                print('---------------')
                 print(str(i + 1) + ': ' + str(listItems[i]['description']))
                 print('---------------')
     else:
@@ -100,7 +107,7 @@ def listAllTasks():
     if (len(listItems) > 0):
         for i in range(0, len(listItems)):
             print('---------------')
-            print(str(i + 1) + ': ' + str(listItems[i]['description']) + ' - ' + 'completed: ' + str(listItems[i]['isDone']))
+            print(str(i + 1) + ': ' + str(listItems[i]['description']) + ' - ' + ('Completed' if (listItems[i]['isDone'] == True) else 'Not completed'))
             print('---------------')
     else:
         print('No items in list')
