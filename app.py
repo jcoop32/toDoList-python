@@ -20,40 +20,53 @@
 
 # completeTask() -> if isDone = false -> mark complete
 
-# global listItems
 listItems = []
 
+exitProgram = False
+
+
+
 def menu():
-    user_choice = input('Command: (a)dd, (e)dit, (d)elete, (c)omplete, (l)ist, (L)ist All, e(x)it: ')
-    if (user_choice == 'a'):
+    userChoice = input('Command: (a)dd, (e)dit, (d)elete, (c)omplete, (l)ist, (L)ist All, e(x)it: ')
+    if (userChoice == 'a'):
         addTask()
         listTasks()
-    # elif (user_choice == 'e'):
-    #     editTask()
-    # elif (user_choice == 'd'):
+    elif (userChoice == 'e'):
+        editTask()
+    # elif (userChoice == 'd'):
     #     deleteTask()
-    # elif (user_choice == 'c'):
+    # elif (userChoice == 'c'):
     #     completeTask()
-    # elif (user_choice == 'l'):
+    # elif (userChoice == 'l'):
     #     listTask()
-    # elif (user_choice == 'L'):
+    # elif (userChoice == 'L'):
     #     listAllTasks()
-    elif (user_choice == 'x'):
-        exit()
+    elif (userChoice == 'x'):
+        print('User quit')
+        global exitProgram
+        exitProgram = True
     else:
         print('Command not found')
     
 
 def addTask():
-    user_input = input('Enter task: ')
+    userInput = input('Enter task: ')
     task = {
-        "description": user_input,
+        "description": userInput,
         "isDone": False,
         "isDeleted": False
     }
     listItems.append(task)
     print('Task added!')
 
+def editTask():
+    if (len(listItems) > 0 ):
+        editChoice = input('# of task to edit: ')
+        editChoice = int(editChoice)
+        newTask = input(str(editChoice) + ': ')
+        listItems[editChoice - 1]['description'] = newTask
+    else:
+        print('No items in list')
     
 def listTasks():
     for i in range(0, len(listItems)):
@@ -61,4 +74,5 @@ def listTasks():
         print(str(i + 1) + ': ' + str(listItems[i]['description']))
         print('---------------')
 
-menu()
+while (exitProgram == False):
+    menu()
