@@ -20,4 +20,45 @@
 
 # completeTask() -> if isDone = false -> mark complete
 
+# global listItems
+listItems = []
 
+def menu():
+    user_choice = input('Command: (a)dd, (e)dit, (d)elete, (c)omplete, (l)ist, (L)ist All, e(x)it: ')
+    if (user_choice == 'a'):
+        addTask()
+        listTasks()
+    # elif (user_choice == 'e'):
+    #     editTask()
+    # elif (user_choice == 'd'):
+    #     deleteTask()
+    # elif (user_choice == 'c'):
+    #     completeTask()
+    # elif (user_choice == 'l'):
+    #     listTask()
+    # elif (user_choice == 'L'):
+    #     listAllTasks()
+    elif (user_choice == 'x'):
+        exit()
+    else:
+        print('Command not found')
+    
+
+def addTask():
+    user_input = input('Enter task: ')
+    task = {
+        "description": user_input,
+        "isDone": False,
+        "isDeleted": False
+    }
+    listItems.append(task)
+    print('Task added!')
+
+    
+def listTasks():
+    for i in range(0, len(listItems)):
+        print('---------------')
+        print(str(i + 1) + ': ' + str(listItems[i]['description']))
+        print('---------------')
+
+menu()
