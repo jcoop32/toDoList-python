@@ -39,8 +39,8 @@ def menu():
     #     completeTask()
     elif (userChoice == 'l'):
         listTasks()
-    # elif (userChoice == 'L'):
-    #     listAllTasks()
+    elif (userChoice == 'L'):
+        listAllTasks()
     elif (userChoice == 'x'):
         print('User quit')
         global exitProgram
@@ -82,7 +82,17 @@ def listTasks():
     if (len(listItems) > 0):
         for i in range(0, len(listItems)):
             print('---------------')
-            print(str(i + 1) + ': ' + str(listItems[i]['description']))
+            if (listItems[i]['isDone'] == False):
+                print(str(i + 1) + ': ' + str(listItems[i]['description']))
+                print('---------------')
+    else:
+        print('No items in list')
+
+def listAllTasks():
+    if (len(listItems) > 0):
+        for i in range(0, len(listItems)):
+            print('---------------')
+            print(str(i + 1) + ': ' + str(listItems[i]['description']) + ' - ' + 'completed: ' + str(listItems[i]['isDone']))
             print('---------------')
     else:
         print('No items in list')
